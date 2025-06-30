@@ -58,19 +58,14 @@ const categories = [
     imageSrc: '/imgs/fotografo-cat-retrato.webp'
   },
   {
-    title: 'GALERIA',
+    title: 'SOBRE',
     href: '/sobre-fotografo',
     imageSrc: '/imgs/fotografo-guto-bordoni.webp'
   },
   {
-    title: 'ESTÚDIO',
-    href: '/sobre-estudio',
-    imageSrc: '/imgs/studio.webp'
-  },
-  {
     title: 'CONTATO',
     href: 'https://api.whatsapp.com/send?phone=5519996476512&text=Olá%2C%20gostaria%20de%20mais%20informações%20sobre%20seus%20serviços%20de%20fotografia.',
-    imageSrc: '/imgs/studio-dimensoes.webp'
+    imageSrc: '/imgs/contato.webp'
   }
 ]
 
@@ -83,7 +78,7 @@ export default function Home() {
         {/* Categories Grid - No gaps between cards */}
         <section className="w-full">
           {/* All Categories Grid - Desktop: 3 columns, Mobile: 1 column */}
-          <div className="grid grid-cols-1 lg:grid-cols-3">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-0">
             {categories.map((category, index) => (
               <motion.div
                 key={`${category.href}-${index}`}
