@@ -10,8 +10,7 @@ const categories = [
   {
     title: 'FOTOGRAFIAS +\nINTELIGÊNCIA ARTIFICIAL',
     href: '/fotografias-inteligencia-artificial',
-    imageSrc: '/imgs/fotografo-cat-especializado-em-ia.webp',
-    featured: true
+    imageSrc: '/imgs/fotografo-cat-especializado-em-ia.webp'
   },
   {
     title: 'FOOD STYLING',
@@ -83,28 +82,14 @@ export default function Home() {
       <main className="pt-20">
         {/* Categories Grid - No gaps between cards */}
         <section className="w-full">
-          {/* Featured Category - Full Width */}
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            <CategoryCard
-              title={categories[0].title}
-              href={categories[0].href}
-              imageSrc={categories[0].imageSrc}
-              className=""
-            />
-          </motion.div>
-
-          {/* Other Categories Grid - Desktop: 3 columns, Mobile: 1 column */}
+          {/* All Categories Grid - Desktop: 3 columns, Mobile: 1 column */}
           <div className="grid grid-cols-1 lg:grid-cols-3">
-            {categories.slice(1).map((category, index) => (
+            {categories.map((category, index) => (
               <motion.div
                 key={`${category.href}-${index}`}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 + (index * 0.1) }}
+                transition={{ duration: 0.6, delay: 0.2 + (index * 0.1) }}
               >
                 <CategoryCard
                   title={category.title}
