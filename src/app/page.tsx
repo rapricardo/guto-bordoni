@@ -1,103 +1,144 @@
-import Image from "next/image";
+'use client'
+
+import { motion } from 'framer-motion'
+import Header from '@/components/Header'
+import Footer from '@/components/Footer'
+import WhatsAppButton from '@/components/WhatsAppButton'
+import CategoryCard from '@/components/CategoryCard'
+
+const categories = [
+  {
+    title: 'FOTOGRAFIAS +\nINTELIGÊNCIA ARTIFICIAL',
+    href: '/fotografias-inteligencia-artificial',
+    imageSrc: '/imgs/fotografo-cat-especializado-em-ia.webp',
+    featured: true
+  },
+  {
+    title: 'FOOD STYLING',
+    href: '/food-styling',
+    imageSrc: '/imgs/fotografo-cat-food-styling.webp'
+  },
+  {
+    title: 'PRODUTO',
+    href: '/fotografia-produto',
+    imageSrc: '/imgs/fotografo-cat-produto.webp'
+  },
+  {
+    title: 'ENSAIO',
+    href: '/ensaio-fotografico',
+    imageSrc: '/imgs/fotografo-cat-ensaio.webp'
+  },
+  {
+    title: 'MODA',
+    href: '/fotografia-moda',
+    imageSrc: '/imgs/fotografo-cat-moda.webp'
+  },
+  {
+    title: 'BOUDOIR &\nLINGERIE',
+    href: '/boudoir-lingerie',
+    imageSrc: '/imgs/fotografo-cat-biquine-lingerie.webp'
+  },
+  {
+    title: 'PUBLICIDADE',
+    href: '/fotografia-publicidade',
+    imageSrc: '/imgs/fotografo-cat-publicidade.webp'
+  },
+  {
+    title: 'AGRO',
+    href: '/fotografia-agro',
+    imageSrc: '/imgs/fotografo-cat-agro.webp'
+  },
+  {
+    title: 'ENSAIO SENSUAL',
+    href: '/ensaio-sensual',
+    imageSrc: '/imgs/fotografo-cat-ensaio-sensual.webp'
+  },
+  {
+    title: 'RETRATOS',
+    href: '/retratos',
+    imageSrc: '/imgs/fotografo-cat-retrato.webp'
+  },
+  {
+    title: 'GALERIA',
+    href: '/sobre-fotografo',
+    imageSrc: '/imgs/fotografo-guto-bordoni.webp'
+  },
+  {
+    title: 'ESTÚDIO',
+    href: '/sobre-estudio',
+    imageSrc: '/imgs/studio.webp'
+  },
+  {
+    title: 'CONTATO',
+    href: 'https://api.whatsapp.com/send?phone=5519996476512&text=Olá%2C%20gostaria%20de%20mais%20informações%20sobre%20seus%20serviços%20de%20fotografia.',
+    imageSrc: '/imgs/studio-dimensoes.webp'
+  }
+]
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <div className="min-h-screen">
+      <Header />
+      
+      <main className="pt-20">
+        {/* Categories Grid - No gaps between cards */}
+        <section className="w-full">
+          {/* Featured Category - Full Width */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+            <CategoryCard
+              title={categories[0].title}
+              href={categories[0].href}
+              imageSrc={categories[0].imageSrc}
+              className=""
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
+          </motion.div>
+
+          {/* Other Categories Grid - Desktop: 3 columns, Mobile: 1 column */}
+          <div className="grid grid-cols-1 lg:grid-cols-3">
+            {categories.slice(1).map((category, index) => (
+              <motion.div
+                key={`${category.href}-${index}`}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 + (index * 0.1) }}
+              >
+                <CategoryCard
+                  title={category.title}
+                  href={category.href}
+                  imageSrc={category.imageSrc}
+                  className=""
+                />
+              </motion.div>
+            ))}
+          </div>
+        </section>
+
+        {/* About Section - Moved to bottom */}
+        <motion.section 
+          className="text-center py-16 px-4 bg-black/20"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1.5 }}
+        >
+          <h1 className="text-3xl md:text-4xl font-bold mb-4 tracking-wider">
+            GUTO BORDONI
+          </h1>
+          <p className="text-lg md:text-xl mb-4 text-[#0eebea]">
+            FOTÓGRAFO PROFISSIONAL
+          </p>
+          <p className="text-base max-w-2xl mx-auto text-white/80">
+            Mais de 20 anos de experiência em fotografia profissional. 
+            Criatividade ilimitada apoiada pela inteligência artificial.
+          </p>
+        </motion.section>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+
+      <Footer />
+      <WhatsAppButton />
     </div>
-  );
+  )
 }
