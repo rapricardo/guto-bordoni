@@ -33,7 +33,7 @@ const categories = [
     imageSrc: '/imgs/fotografo-cat-moda.webp'
   },
   {
-    title: 'BOUDOIR &\nLINGERIE',
+    title: 'BLINGERIE',
     href: '/boudoir-lingerie',
     imageSrc: '/imgs/fotografo-cat-biquine-lingerie.webp'
   },
